@@ -43,7 +43,7 @@ export default function Product() {
 
   const [searchParams] = useSearchParams();
   const tag = searchParams.get('tag');
-  const searchTerm = searchParams.get('search');
+  const searchTerm = searchParams.get('searchTerm');
 
   const [page, setPage] = useState(1);
   const limit = 8;

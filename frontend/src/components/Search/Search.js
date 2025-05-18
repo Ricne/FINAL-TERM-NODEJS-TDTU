@@ -1,43 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import classes from './search.module.css';
 
-Search.defaultProps = {
-  searchRoute: '/search/',
-  defaultRoute: '/',
-  placeholder: 'Search Products',
-};
-
-export default function Search({
-  searchRoute,
-  defaultRoute,
-  margin,
-  placeholder,
-}) {
+export default function Search({ margin, placeholder = 'Search Products' }) {
   const [term, setTerm] = useState('');
   const navigate = useNavigate();
-  const { searchTerm } = useParams();
-
-  useEffect(() => {
-    setTerm(searchTerm ?? '');
-  }, [searchTerm]);
 
   const search = () => {
-    const trimmedTerm = term.trim(); // Bỏ khoảng trắng 2 đầu
-
+    const trimmedTerm = term.trim();
     if (trimmedTerm) {
-      navigate(searchRoute + encodeURIComponent(trimmedTerm));
+      navigate(`/products?searchTerm=${encodeURIComponent(trimmedTerm)}`);
     } else {
-      navigate(defaultRoute);
+      navigate('/products');
     }
   };
 
   const handleInputChange = (e) => {
     const value = e.target.value;
     setTerm(value);
-
     if (value.trim() === '') {
-      navigate(defaultRoute); // Nếu clear hết input thì quay về sản phẩm bình thường
+      navigate('/products');
     }
   };
 

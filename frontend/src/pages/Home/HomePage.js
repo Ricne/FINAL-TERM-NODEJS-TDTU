@@ -62,7 +62,7 @@ export default function HomePage() {
     );
   };
 
-  // Dữ liệu các nhóm sản phẩm
+ 
   const newProducts = [...products].sort(
     (a, b) => new Date(b.createdAt || b.id) - new Date(a.createdAt || a.id)
   );
