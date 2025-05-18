@@ -44,7 +44,7 @@ export const increaseVoucherUsage = async (id) => {
     console.error('Cannot increase voucher usage: voucher ID is undefined');
     return null;
   }
-  
+
   try {
     console.log('Increasing usage for voucher ID:', id);
     const response = await axios.patch(`${BASE}/${id}/use`);

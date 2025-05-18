@@ -8,7 +8,7 @@ export const uploadImage = async (files) => {
 
   const validImages = files.filter(file => file.type === 'image/jpeg');
   if (!validImages.length) {
-    toast.error('Only JPG files are allowed.');
+    toast.error('Only JPG files are allowed.', 'File Type Error');
     return [];
   }
 
@@ -20,30 +20,20 @@ export const uploadImage = async (files) => {
   try {
     const response = await axios.post(`${API_URL}/api/upload`, formData, {
       onUploadProgress: (progressEvent) => {
-        const progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
-        if (toastId === null) {
-          toastId = toast.info('Uploading images...', { autoClose: false, closeOnClick: false, draggable: false });
+        const progress = (progressEvent.loaded / progressEvent.total) * 100;
+        if (toastId) {
+          toast.update(toastId, { progress });
+        } else {
+          toastId = toast.success('Uploading...', { progress });
         }
-        toast.update(toastId, { 
-          render: `Uploading... ${progress}%`,
-          progress: progress / 100,
-          type: toast.TYPE.INFO,
-          autoClose: false,
-          closeOnClick: false,
-          draggable: false,
-        });
-      },
-      headers: {
-        'Content-Type': 'multipart/form-data',
       },
     });
 
     toast.dismiss(toastId);
-    toast.success('Upload successful!');
     return response.data.imageUrls;
   } catch (error) {
     toast.dismiss(toastId);
-    toast.error('Upload failed! Please try again.');
+    toast.error('Upload failed! Please try again.', 'Upload Error');
     console.error('Upload failed:', error);
     return [];
   }

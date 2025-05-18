@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import CartPage from './pages/Cart/CartPage';
 import ProductPage from './pages/Product/ProductPage';
+import Product from './pages/Product/Product';
 import HomePage from './pages/Home/HomePage';
 import LoginPage from './pages/Login/LoginPage';
 import RegisterPage from './pages/Register/RegisterPage';
@@ -27,6 +28,7 @@ export default function AppRoutes() {
       <Route path="/search/:searchTerm" element={<HomePage />} />
       <Route path="/tag/:tag" element={<HomePage />} />
       <Route path="/product/:id" element={<ProductPage />} />
+      <Route path="/products" element={<Product />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />

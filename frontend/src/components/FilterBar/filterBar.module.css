@@ -1,118 +1,120 @@
 /* Filter Bar Container */
 .filterBar {
-    display: flex;
-    flex-direction: row; /* Changed to row layout */
-    align-items: center; /* Vertically center all elements */
-    gap: 1.5rem; /* Spacing between sections */
-    padding: 1rem 1.5rem; /* Balanced padding */
-    background-color: #ffffff;
-    border: 1px solid #e8ecef; /* Softer border */
-    border-radius: 1rem; /* Consistent with thumbnails */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Matches thumbnails */
-    max-width: 100%; /* Full width for responsiveness */
-    margin: 1rem auto; /* Centered with margin */
-    flex-wrap: wrap; /* Allow wrapping for smaller screens */
-  }
-  
-  /* Header */
-  .header {
-    display: flex;
-    align-items: center;
-    gap: 1rem; /* Space between title and clear button */
-    min-width: 180px; /* Ensure header doesn't shrink too much */
-  }
-  
-  /* Section Title */
-  .header h4,
-  .filterSection h4 {
-    margin: 0;
-    font-size: 1rem; /* Clear hierarchy */
-    font-weight: 600;
-    color: #2d3748; /* Dark, modern gray */
-    letter-spacing: 0.02em; /* Subtle spacing */
-  }
-  
-  /* Filter Section */
-  .filterSection {
-    display: flex;
-    align-items: center; /* Align label and options horizontally */
-    gap: 0.75rem; /* Space between label and options */
-  }
-  
-  /* Stars and Tags Containers */
-  .stars,
-  .tags {
-    display: flex;
-    gap: 0.5rem; /* Consistent with thumbnails */
-    align-items: center;
-    flex-wrap: wrap; /* Allow wrapping if needed */
-  }
-  
-  /* Star and Tag Options */
-  .starOption,
-  .tagOption {
-    cursor: pointer;
-    padding: 0.5rem 1rem; /* Balanced padding */
-    font-size: 0.875rem; /* Compact but readable */
-    font-weight: 500; /* Medium weight for clarity */
-    border: 1px solid #d1d9e0; /* Softer border */
-    border-radius: 1rem; /* Matches thumbnails */
-    background-color: #f7fafc; /* Light, clean background */
-    color: #4a5568; /* Neutral text */
-    transition: all 0.2s ease; /* Smooth transitions */
-    display: flex;
-    align-items: center; /* Center content vertically */
-  }
-  
-  .starOption:hover,
-  .tagOption:hover {
-    background-color: #edf2ff; /* Subtle blue hover */
-    border-color: #e72929; /* Matches thumbnail accent */
-    color: #e72929;
-  }
-  
-  .starOption:focus,
-  .tagOption:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(231, 41, 41, 0.2); /* Accessible focus ring */
-  }
-  
-  /* Active State */
-  .active {
-    background-color: #e72929; /* Matches thumbnail accent */
-    color: #ffffff;
-    border-color: #e72929;
-  }
-  
-  /* Clear Button */
-  .clearButton {
-    background-color: transparent;
-    border: 2px solid #e72929;
-    color: #e72929;
-    font-size: 0.875rem; /* Cải thiện độ lớn cho dễ đọc */
-    font-weight: 600; /* Đậm hơn để nổi bật */
-    padding: 0.5rem 1rem; /* Tăng padding cho nút rộng hơn */
-    border-radius: 999px; /* Giữ kiểu rounded cho nút */
-    cursor: pointer;
-    text-transform: uppercase; /* Chữ in hoa để làm rõ hành động */
-    transition: all 0.3s ease; /* Mượt mà trong việc thay đổi */
-    box-shadow: 0 4px 8px rgba(231, 41, 41, 0.1); /* Thêm bóng nhẹ cho nút */
-  }
-  
-  .clearButton:hover {
-    background-color: #e72929; /* Màu nền khi hover */
-    color: #fff; /* Chữ trắng khi hover */
-    box-shadow: 0 6px 12px rgba(231, 41, 41, 0.2); /* Bóng đổ rõ rệt hơn khi hover */
-    transform: translateY(-2px); /* Hiệu ứng nâng nút khi hover */
-  }
-  
-  .clearButton:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(231, 41, 41, 0.3); /* Viền focus rõ ràng */
-  }
-  
-  .clearButton:active {
-    background-color: #c41818; /* Đổi màu khi nhấn vào nút */
-    transform: translateY(1px); /* Nút bị "dìm" nhẹ khi nhấn */
-  }
-  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.2rem 2rem;
+  background-color: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  max-width: 100%;
+  margin: 1.5rem auto;
+  flex-wrap: wrap;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  min-width: 200px;
+}
+
+/* Section Title */
+.header h4,
+.filterSection h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  letter-spacing: 0.03em;
+}
+
+/* Filter Section */
+.filterSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Stars and Tags Containers */
+.stars,
+.tags {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Star and Tag Options */
+.starOption,
+.tagOption {
+  cursor: pointer;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: 1px solid #e0e0e0;
+  border-radius: 1.2rem;
+  background-color: #fff;
+  color: #555;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+}
+
+.starOption:hover,
+.tagOption:hover {
+  background-color: #fff0f0;
+  border-color: #e72929;
+  color: #e72929;
+  transform: translateY(-2px);
+}
+
+.starOption:focus,
+.tagOption:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(231, 41, 41, 0.15);
+}
+
+/* Active State */
+.active {
+  background-color: #e72929;
+  color: #fff;
+  border-color: #e72929;
+  transform: scale(1.05);
+}
+
+/* Clear Button */
+.clearButton {
+  background-color: #fff;
+  border: 2px solid #e72929;
+  color: #e72929;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(231, 41, 41, 0.08);
+}
+
+.clearButton:hover {
+  background-color: #e72929;
+  color: #fff;
+  box-shadow: 0 5px 15px rgba(231, 41, 41, 0.15);
+  transform: translateY(-2px);
+}
+
+.clearButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(231, 41, 41, 0.2);
+}
+
+.clearButton:active {
+  background-color: #d42525;
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(231, 41, 41, 0.1);
+}

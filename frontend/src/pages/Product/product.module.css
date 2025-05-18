@@ -1,0 +1,52 @@
+.list li a {
+  height: 30rem;
+  width: 22rem;
+  border: 1px solid whitesmoke;
+  border-radius: 1rem;
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: #e72929;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+/* ===== PAGINATION ===== */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 2rem;
+  user-select: none;
+}
+
+.pagination button {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  background: #f8f8f8;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #e72929;
+  color: white;
+  border-color: #e72929;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 1.4rem;
+  font-weight: 500;
+}

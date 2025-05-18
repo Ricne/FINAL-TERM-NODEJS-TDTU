@@ -4,9 +4,10 @@ import Button from '../../components/Button/Button';
 import { getVoucherByCode } from '../../services/voucherService';
 import { toast } from 'react-toastify';
 
-export default function VoucherInput({ onSuccess }) {
+export default function VoucherInput({ onSuccess, order }) {
   const [voucherCode, setVoucherCode] = useState('');
   const [loading, setLoading] = useState(false);
+  const totalPrice = order?.totalPrice || 0;
 
   const handleApply = async () => {
     if (!voucherCode.trim()) {
@@ -33,6 +34,11 @@ export default function VoucherInput({ onSuccess }) {
 
       if (voucherData.usageLimit && voucherData.usedCount >= voucherData.usageLimit) {
         toast.warning('This voucher has reached its usage limit.');
+        return;
+      }
+
+      if (voucherData.minOrderAmount && totalPrice < voucherData.minOrderAmount) {
+        toast.warning(`Order must be at least $${voucherData.minOrderAmount}`);
         return;
       }
 

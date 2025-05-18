@@ -12,6 +12,7 @@ import { useLoading } from './hooks/useLoading';
 import { setLoadingInterceptor } from './interceptors/loadingInterceptor';
 import { useEffect } from 'react';
 import { useCart } from './hooks/useCart';
+import Footer from './components/Footer/Footer';
 
 function AppContent() {
   const { showLoading, hideLoading } = useLoading();
@@ -26,6 +27,7 @@ function AppContent() {
       <Loading />
       <Header />
       <AppRoutes />
+      <Footer />
     </AuthProvider>
   );
 }

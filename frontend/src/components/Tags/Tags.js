@@ -23,7 +23,10 @@ export default function Tags({ tags, forProductPage }) {
           }}
         >
           {tags.map(tag => (
-            <Link key={tag.name} to={`/tag/${tag.name}`}>
+            <Link
+              key={tag.name}
+              to={`/products?tag=${encodeURIComponent(tag.name)}`}
+            >
               {tag.name}
               {!forProductPage && ` (${tag.count})`}
             </Link>
