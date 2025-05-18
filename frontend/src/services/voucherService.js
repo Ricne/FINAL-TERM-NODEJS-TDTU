@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const BASE = '/api/vouchers';
+const API_URL = process.env.REACT_APP_API_URL;
+const BASE = `${API_URL}/api/vouchers`;
 
 export const getAllVouchers = async () => {
   const res = await axios.get(BASE);
@@ -29,7 +30,7 @@ export const deleteVoucher = async (id) => {
 export const getVoucherByCode = async (code) => {
   try {
     console.log('Fetching voucher with code:', code);
-    const response = await axios.get(`/api/vouchers/code/${code}`);
+    const response = await axios.get(`${BASE}/code/${code}`);
     console.log('Voucher data received:', response.data);
     return response.data;
   } catch (error) {
@@ -46,7 +47,7 @@ export const increaseVoucherUsage = async (id) => {
   
   try {
     console.log('Increasing usage for voucher ID:', id);
-    const response = await axios.patch(`/api/vouchers/${id}/use`);
+    const response = await axios.patch(`${BASE}/${id}/use`);
     console.log('Usage increased successfully:', response.data);
     return response.data;
   } catch (error) {
@@ -54,4 +55,3 @@ export const increaseVoucherUsage = async (id) => {
     throw error;
   }
 };
-
