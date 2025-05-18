@@ -17,11 +17,10 @@
   padding: 2rem;
 }
 
-/* ===== HIỆU ỨNG GÕ CHỮ + NHÁY ===== */
 .homeTitle {
   font-size: 3rem;
   text-align: center;
-  margin-bottom: 2rem;
+  margin: 2rem auto;
   color: transparent;
   background-image: linear-gradient(90deg, #e72929, #ff7e5f, #e72929);
   background-clip: text;
@@ -30,27 +29,23 @@
   white-space: nowrap;
   overflow: hidden;
   border-right: 4px solid #e72929;
-  margin: 0 auto;
   letter-spacing: 2px;
-  animation: typing 5s steps(40, end) infinite, blink 0.75s step-end infinite;
+  width: 0;
+  animation: typing 5s steps(26, end) 1s forwards, erase 5s steps(26, end) 6s forwards, blink 0.75s step-end infinite;
 }
 
-
-/* Gõ từng chữ */
 @keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 22ch;
-  }
+  from { width: 0; }
+  to   { width: 26ch; }
 }
 
-/* Nháy thanh gõ */
+@keyframes erase {
+  from { width: 26ch; }
+  to   { width: 0; }
+}
+
 @keyframes blink {
-  50% {
-    border-color: transparent;
-  }
+  50% { border-color: transparent; }
 }
 
 .homeSection {
