@@ -11,6 +11,8 @@ import { GoogleLogin } from '@react-oauth/google';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 export default function LoginPage() {
   const { handleSubmit, register, formState: { errors } } = useForm();
   const navigate = useNavigate();
@@ -33,7 +35,7 @@ export default function LoginPage() {
 
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
-      const { data } = await axios.post('api/users/google-login', {
+      const { data } = await axios.post(`${API_URL}/api/users/google-login`, {
           credential: credentialResponse.credential,
       });
       
