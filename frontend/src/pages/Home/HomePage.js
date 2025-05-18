@@ -43,14 +43,11 @@ export default function HomePage() {
         <h2 style={{ textTransform: 'capitalize' }}>{title}</h2>
         <div className={classes.productGrid}>
           {top4.map((p) => (
-            <div className={classes.productCard} key={p.id}>
-              <img
-                src={p.imageUrls?.[0] || 'https://via.placeholder.com/150'}
-                alt={p.name}
-              />
+            <Link to={`/product/${p.id}`} className={classes.productCard} key={p.id}>
+              <img src={p.imageUrls?.[0] || 'https://via.placeholder.com/150'} alt={p.name} />
               <h3>{p.name}</h3>
               <Price price={p.price} />
-            </div>
+            </Link>
           ))}
         </div>
 
