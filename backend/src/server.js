@@ -6,9 +6,10 @@ import cors from 'cors';
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 
-import foodRouter from './routers/food.router.js';
+import productRouter from './routers/product.router.js';
 import userRouter from './routers/user.router.js';
 import orderRouter from './routers/order.router.js';
+import voucherRouter from './routers/voucher.router.js';
 import uploadRouter from './routers/upload.router.js';
 import { dbconnect } from './config/database.config.js';
 
@@ -25,8 +26,9 @@ app.use(cors({
 }));
 
 // API Routes
-app.use('/api/foods', foodRouter);
+app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
+app.use('/api/vouchers', voucherRouter);
 app.use('/api/orders', orderRouter);
 app.use('/api/upload', uploadRouter);
 

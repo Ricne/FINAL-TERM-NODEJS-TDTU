@@ -4,50 +4,71 @@ import { toast } from 'react-toastify';
 
 const AuthContext = createContext(null);
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children, clearCart }) => {
   const [user, setUser] = useState(userService.getUser());
 
   const login = async (email, password) => {
     try {
-      const user = await userService.login(email, password);
-      setUser(user);
+      const loggedInUser = await userService.login(email, password);
+      setUser(loggedInUser);
       toast.success('Login Successful');
     } catch (err) {
-      toast.error(err.response.data);
+      toast.error(err.response?.data || 'Login failed');
     }
+  };
+
+  const setUserData = (userData) => {
+    setUser(userData);
   };
 
   const register = async data => {
     try {
-      const user = await userService.register(data);
-      setUser(user);
+      const registeredUser = await userService.register(data);
+      setUser(registeredUser);
       toast.success('Register Successful');
     } catch (err) {
-      toast.error(err.response.data);
+      toast.error(err.response?.data || 'Registration failed');
     }
   };
 
   const logout = () => {
     userService.logout();
     setUser(null);
+    if (clearCart) clearCart();
     toast.success('Logout Successful');
   };
 
-  const updateProfile = async user => {
-    const updatedUser = await userService.updateProfile(user);
-    toast.success('Profile Update Was Successful');
-    if (updatedUser) setUser(updatedUser);
+  const updateProfile = async updatedUser => {
+    try {
+      const result = await userService.updateProfile(updatedUser);
+      toast.success('Profile Update Was Successful');
+      setUser(result);
+    } catch (err) {
+      toast.error('Profile Update Failed');
+    }
   };
 
   const changePassword = async passwords => {
-    await userService.changePassword(passwords);
-    logout();
-    toast.success('Password Changed Successfully, Please Login Again!');
+    try {
+      await userService.changePassword(passwords);
+      logout();
+      toast.success('Password Changed Successfully, Please Login Again!');
+    } catch (err) {
+      toast.error('Password Change Failed');
+    }
   };
 
   return (
     <AuthContext.Provider
-      value={{ user, login, logout, register, updateProfile, changePassword }}
+      value={{
+        user,
+        login,
+        logout,
+        register,
+        updateProfile,
+        changePassword,
+        setUserData,
+      }}
     >
       {children}
     </AuthContext.Provider>

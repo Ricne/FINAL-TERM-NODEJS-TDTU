@@ -1,16 +1,17 @@
 .container {
-  margin-top: 1rem;
+  margin-top: 2rem;
+  padding: 0 1rem;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column; /* Đổi thành column để map nằm dưới */
+  align-items: center;     /* Căn giữa toàn bộ nội dung */
+  gap: 2rem;
 }
 
 .content {
+  width: 100%;
+  max-width: 40rem;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 35rem;
-  margin-right: 1rem;
 }
 
 .header {
@@ -27,6 +28,14 @@
   width: 20%;
 }
 
+.map {
+  width: 100%;
+  max-width: 22rem;
+  min-width: 200px;
+  margin-top: 2rem;
+  align-items: center;
+}
+
 .payment {
   width: 100%;
   text-align: center;
@@ -39,4 +48,5 @@
   color: white;
   padding: 0.8rem 5rem;
   border-radius: 1rem;
+  text-decoration: none;
 }

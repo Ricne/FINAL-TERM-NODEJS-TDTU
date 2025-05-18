@@ -30,6 +30,10 @@ export default function OrdersPage() {
       dispatch({ type: 'ALL_STATUS_FETCHED', payload: status });
     });
     getAll(filter).then(orders => {
+      console.log('Orders from API:', orders);
+      if (orders.length > 0) {
+        console.log('First order items:', orders[0].items);
+      }
       dispatch({ type: 'ORDERS_FETCHED', payload: orders });
     });
   }, [filter]);
@@ -46,7 +50,7 @@ export default function OrdersPage() {
           {allStatus.map(state => (
             <Link
               key={state}
-              className={state == filter ? classes.selected : ''}
+              className={state === filter ? classes.selected : ''}
               to={`/orders/${state}`}
             >
               {state}
@@ -73,11 +77,13 @@ export default function OrdersPage() {
               <span>{order.status}</span>
             </div>
             <div className={classes.items}>
-              {order.items.map(item => (
-                <Link key={item.food.id} to={`/food/${item.food.id}`}>
-                  <img src={item.food.imageUrl} alt={item.food.name} />
-                </Link>
-              ))}
+              {order.items.map(item =>
+                item.product ? (
+                  <Link key={item.product.id} to={`/product/${item.product.id}`}>
+                    <img src={item.product.imageUrls?.[0]} alt={item.product.name} />
+                  </Link>
+                ) : null
+              )}
             </div>
             <div className={classes.footer}>
               <div>

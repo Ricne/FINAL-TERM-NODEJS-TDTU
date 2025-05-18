@@ -1,15 +1,15 @@
 .list {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; 
   flex-wrap: wrap;
   list-style-type: none;
   padding: 0;
 }
 
 .list li a {
-  height: 22.5rem;
-  width: 20rem;
+  height: 28rem; 
+  width: 22rem; 
   border: 1px solid whitesmoke;
   border-radius: 1rem;
   margin: 0.5rem;
@@ -17,6 +17,12 @@
   flex-direction: column;
   overflow: hidden;
   color: #e72929;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.list li a:hover {
+  transform: scale(1.05);
 }
 
 .image {
@@ -26,9 +32,9 @@
 
 .content {
   margin-top: 0.3rem;
-  padding: 0.5rem 1rem;
+  padding: 0.7rem 1rem; 
   position: relative;
-  height: 7rem;
+  flex-grow: 1; 
 }
 
 .favorite {
@@ -49,37 +55,78 @@
 .product_item_footer {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+  font-size: 0.9rem; 
+  margin-top: 0.7rem;
+}
+
+.origins {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem; 
+  font-size: 0.85rem;
+  color: grey;
 }
 
 .origins span {
   border-radius: 2rem;
-  background-color: whitesmoke;
-  display: inline-block;
-  font-size: 0.8rem;
-  color: grey;
-  margin-right: 0.3rem;
-  padding: 0 0.5rem;
-  margin-top: 0.2rem;
+  background-color: #f1f1f1;
+  padding: 0.3rem 0.6rem;
 }
 
-.origins {
-  flex: 9;
-}
-
-.cook_time {
-  font-size: 1rem;
-  flex: 5;
+.discription {
+  flex: 1;
   text-align: right;
+  font-size: 1rem; 
+  color: grey;
 }
 
 .price {
   position: absolute;
   bottom: 0;
-  left: 0.9rem;
+  left: 1rem;
   background-color: white;
-  padding: 0.3rem 100% 0 0;
+  padding: 0.rem 100% 0 0;
   color: #414141;
   margin-top: 0.7rem;
-  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+  font-size: 1.2rem; 
+}
+
+.price:hover {
+  color: #e72929;
+}
+
+.sortContainer {
+  display: flex;
+  justify-content: flex-start;
+  margin: 2rem 2rem 1rem 2rem;
+}
+
+.sortSelect {
+  padding: 0.6rem 2rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="10"><path fill="%23333" d="M7 10L0 0h14z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 0.5rem;
+}
+
+.sortSelect:hover {
+  border-color: #aaa;
+}
+
+.sortSelect:focus {
+  border-color: #e72929;
+  box-shadow: 0 0 0 3px rgba(231, 41, 41, 0.2);
 }

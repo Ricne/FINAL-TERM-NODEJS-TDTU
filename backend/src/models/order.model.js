@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 import { OrderStatus } from '../constants/orderStatus.js';
-import { FoodModel } from './food.model.js';
+import { ProductModel } from './product.model.js';
 
 export const LatLngSchema = new Schema(
   {
@@ -14,7 +14,7 @@ export const LatLngSchema = new Schema(
 
 export const OrderItemSchema = new Schema(
   {
-    food: { type: FoodModel.schema, required: true },
+    product: { type: ProductModel.schema, required: true },
     price: { type: Number, required: true },
     quantity: { type: Number, required: true },
   },
@@ -24,7 +24,7 @@ export const OrderItemSchema = new Schema(
 );
 
 OrderItemSchema.pre('validate', function (next) {
-  this.price = this.food.price * this.quantity;
+  this.price = this.product.price * this.quantity;
   next();
 });
 
@@ -38,6 +38,15 @@ const orderSchema = new Schema(
     items: { type: [OrderItemSchema], required: true },
     status: { type: String, default: OrderStatus.NEW },
     user: { type: Schema.Types.ObjectId, required: true, ref: 'user' },
+
+    voucher: {
+      type: Schema.Types.ObjectId,
+      ref: 'VoucherModel',
+    },
+    discount: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,

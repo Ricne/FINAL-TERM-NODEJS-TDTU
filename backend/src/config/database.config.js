@@ -1,8 +1,7 @@
 import { connect, set } from 'mongoose';
 import { UserModel } from '../models/user.model.js';
-import { FoodModel } from '../models/food.model.js';
+// import { ProductModel } from '../models/product.model.js';  // Bỏ luôn import này
 import { sample_users } from '../data.js';
-import { sample_foods } from '../data.js';
 import bcrypt from 'bcryptjs';
 
 const PASSWORD_HASH_SALT_ROUNDS = 10;
@@ -14,20 +13,17 @@ export const dbconnect = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log('Connected to MongoDB successfully!');
-    
     await seedUsers();
-    await seedFoods();
+    // Đã loại bỏ seedProducts();
   } catch (error) {
-    console.error('Error connecting to MongoDB:', error.message);
-    process.exit(1);
+    console.log(error);
   }
 };
 
 async function seedUsers() {
   const usersCount = await UserModel.countDocuments();
   if (usersCount > 0) {
-    console.log('Users already seeded!');
+    console.log('Users seed is already done!');
     return;
   }
 
@@ -36,20 +32,6 @@ async function seedUsers() {
     await UserModel.create(user);
   }
 
-  console.log('User seeding done!');
+  console.log('Users seed is done!');
 }
 
-async function seedFoods() {
-  const foodsCount = await FoodModel.countDocuments();
-  if (foodsCount > 0) {
-    console.log('Products already seeded!');
-    return;
-  }
-
-  for (const food of sample_foods) {
-    food.imageUrl = `/foods/${food.imageUrl}`;
-    await FoodModel.create(food);
-  }
-
-  console.log('Products seeding done!');
-}

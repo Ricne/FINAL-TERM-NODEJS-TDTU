@@ -4,46 +4,43 @@ import { getNewOrderForCurrentUser } from '../../services/orderService';
 import Title from '../../components/Title/Title';
 import OrderItemsList from '../../components/OrderItemsList/OrderItemsList';
 import Map from '../../components/Map/Map';
-import PaypalButtons from '../../components/PaypalButtons/PaypalButtons';
+import FakePaypalButtons from '../../components/PaypalButtons/FakePaypalButtons';
 
 export default function PaymentPage() {
   const [order, setOrder] = useState();
 
   useEffect(() => {
-    getNewOrderForCurrentUser().then(data => setOrder(data));
+    getNewOrderForCurrentUser().then(setOrder);
   }, []);
 
-  if (!order) return;
+  if (!order) return null;
+
+  const discount = order.discount || 0;
+  const totalPrice = order.totalPrice || 0;
+  const totalAfterDiscount = order.totalAfterDiscount || totalPrice - discount;
+
+  const orderWithDiscount = { ...order, discount, totalAfterDiscount };
 
   return (
-    <>
-      <div className={classes.container}>
-        <div className={classes.content}>
-          <Title title="Order Form" fontSize="1.6rem" />
-          <div className={classes.summary}>
-            <div>
-              <h3>Name:</h3>
-              <span>{order.name}</span>
-            </div>
-            <div>
-              <h3>Address:</h3>
-              <span>{order.address}</span>
-            </div>
+    <div className={classes.container}>
+      <div className={classes.content}>
+        <Title title="Order Form" fontSize="1.6rem" />
+        <div className={classes.summary}>
+          <div>
+            <h3>Name:</h3>
+            <span>{order.name}</span>
           </div>
-          <OrderItemsList order={order} />
-        </div>
-
-        <div className={classes.map}>
-          <Title title="Your Location" fontSize="1.6rem" />
-          <Map readonly={true} location={order.addressLatLng} />
-        </div>
-
-        <div className={classes.buttons_container}>
-          <div className={classes.buttons}>
-            <PaypalButtons order={order} />
+          <div>
+            <h3>Address:</h3>
+            <span>{order.address}</span>
           </div>
         </div>
+        <OrderItemsList order={orderWithDiscount} />
       </div>
-    </>
+
+      <div className={classes.buttons_container}>
+        <FakePaypalButtons order={orderWithDiscount} />
+      </div>
+    </div>
   );
 }

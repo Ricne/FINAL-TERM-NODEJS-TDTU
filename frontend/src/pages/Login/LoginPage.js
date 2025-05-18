@@ -7,26 +7,50 @@ import Title from '../../components/Title/Title';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import { EMAIL } from '../../constants/patterns';
-export default function LoginPage() {
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm();
+import { GoogleLogin } from '@react-oauth/google';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
+export default function LoginPage() {
+  const { handleSubmit, register, formState: { errors } } = useForm();
   const navigate = useNavigate();
-  const { user, login } = useAuth();
+  const { user, login, setUserData } = useAuth();
   const [params] = useSearchParams();
   const returnUrl = params.get('returnUrl');
 
   useEffect(() => {
     if (!user) return;
-
     returnUrl ? navigate(returnUrl) : navigate('/');
-  }, [user]);
+  }, [user, navigate, returnUrl]);
 
   const submit = async ({ email, password }) => {
-    await login(email, password);
+    try {
+      await login(email, password);
+    } catch (error) {
+      toast.error('Login failed');
+    }
+  };
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      const { data } = await axios.post('api/users/google-login', {
+          credential: credentialResponse.credential,
+      });
+      
+      localStorage.setItem('user', JSON.stringify(data));
+      
+      setUserData(data);
+
+      if (data.address === 'Please update your address') {
+        toast.info('Please update your profile information');
+        navigate('/profile');
+      } else {
+      returnUrl ? navigate(returnUrl) : navigate('/');
+      }
+    } catch (error) {
+      console.error('Google login error:', error);
+      toast.error('Google login failed');
+    }
   };
 
   return (
@@ -53,10 +77,21 @@ export default function LoginPage() {
             error={errors.password}
           />
 
-          <Button type="submit" text="Login" />
+          <Button id="loginBtn" type="submit" text="Login" />
+
+          <div className={classes.divider}>OR</div>
+
+          <div className={classes.googleLogin}>
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={() => {
+                toast.error('Google login failed');
+              }}
+            />
+          </div>
 
           <div className={classes.register}>
-            New user? &nbsp;
+            New user?&nbsp;
             <Link to={`/register${returnUrl ? '?returnUrl=' + returnUrl : ''}`}>
               Register here
             </Link>

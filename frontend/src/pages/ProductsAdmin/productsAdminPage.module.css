@@ -1,0 +1,134 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 10rem;
+}
+
+.list {
+  margin: 1rem;
+  max-width: 70rem;
+}
+
+a.add_food {
+  display: inline-block;
+  background: darkred;
+  color: white;
+  padding: 0.7rem;
+  margin: 0.8rem 0;
+  border-radius: 1.5rem;
+}
+
+a.add_food:hover {
+  opacity: 0.9;
+}
+
+.list_item {
+  display: grid;
+  grid-template-columns:
+    minmax(5rem, 7rem)
+    minmax(10rem, 20rem)
+    minmax(5rem, 10rem)
+    minmax(5rem, 10rem);
+  font-size: 1.2rem;
+  height: 5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.list_item img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 100rem;
+  object-fit: cover;
+}
+
+.actions > a {
+  margin-right: 1rem;
+  color: darkblue;
+  cursor: pointer;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 6px 14px;
+  font-size: 16px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #ddd;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.limit_selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 1rem 0;
+  font-size: 16px;
+}
+
+.limit_selector select {
+  padding: 4px 8px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+/* ===== PAGINATION ===== */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 2rem;
+  user-select: none;
+}
+
+.pagination button {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  background: #f8f8f8;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #e72929;
+  color: white;
+  border-color: #e72929;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 1.4rem;
+  font-weight: 500;
+}

@@ -39,31 +39,31 @@ export default function CartProvider({ children }) {
     return items.reduce((prevValue, curValue) => prevValue + curValue, 0);
   };
 
-  const removeFromCart = foodId => {
-    const filteredCartItems = cartItems.filter(item => item.food.id !== foodId);
+  const removeFromCart = productId => {
+    const filteredCartItems = cartItems.filter(item => item.product.id !== productId);
     setCartItems(filteredCartItems);
   };
 
   const changeQuantity = (cartItem, newQauntity) => {
-    const { food } = cartItem;
+    const { product } = cartItem;
 
     const changedCartItem = {
       ...cartItem,
       quantity: newQauntity,
-      price: food.price * newQauntity,
+      price: product.price * newQauntity,
     };
 
     setCartItems(
-      cartItems.map(item => (item.food.id === food.id ? changedCartItem : item))
+      cartItems.map(item => (item.product.id === product.id ? changedCartItem : item))
     );
   };
 
-  const addToCart = food => {
-    const cartItem = cartItems.find(item => item.food.id === food.id);
+  const addToCart = product => {
+    const cartItem = cartItems.find(item => item.product.id === product.id);
     if (cartItem) {
       changeQuantity(cartItem, cartItem.quantity + 1);
     } else {
-      setCartItems([...cartItems, { food, quantity: 1, price: food.price }]);
+      setCartItems([...cartItems, { product, quantity: 1, price: product.price }]);
     }
   };
 

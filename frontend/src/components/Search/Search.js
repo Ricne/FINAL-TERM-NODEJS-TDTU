@@ -22,16 +22,38 @@ export default function Search({
     setTerm(searchTerm ?? '');
   }, [searchTerm]);
 
-  const search = async () => {
-    term ? navigate(searchRoute + term) : navigate(defaultRoute);
+  const search = () => {
+    const trimmedTerm = term.trim(); // Bỏ khoảng trắng 2 đầu
+
+    if (trimmedTerm) {
+      navigate(searchRoute + encodeURIComponent(trimmedTerm));
+    } else {
+      navigate(defaultRoute);
+    }
   };
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setTerm(value);
+
+    if (value.trim() === '') {
+      navigate(defaultRoute); // Nếu clear hết input thì quay về sản phẩm bình thường
+    }
+  };
+
+  const handleKeyUp = (e) => {
+    if (e.key === 'Enter') {
+      search();
+    }
+  };
+
   return (
     <div className={classes.container} style={{ margin }}>
       <input
         type="text"
         placeholder={placeholder}
-        onChange={e => setTerm(e.target.value)}
-        onKeyUp={e => e.key === 'Enter' && search()}
+        onChange={handleInputChange}
+        onKeyUp={handleKeyUp}
         value={term}
       />
       <button onClick={search}>Search</button>

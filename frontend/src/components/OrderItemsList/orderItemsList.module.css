@@ -1,26 +1,86 @@
+
+
+.table td img {
+  width: 60px;              /* kích thước nhỏ gọn, vừa đủ */
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;       /* làm ảnh tròn hoàn toàn */
+  border: 2px solid #ddd;   /* viền nhẹ, màu xám nhạt */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15); /* bóng nhẹ tạo chiều sâu */
+  display: block;           /* để margin auto có hiệu quả */
+  margin: 0 auto;           /* căn giữa trong ô */
+  transition: transform 0.3s ease; /* hiệu ứng khi hover */
+}
+
+.table td img:hover {
+  transform: scale(1.05);   /* phóng to nhẹ khi hover */
+  cursor: pointer;
+}
+
 .table {
   width: 100%;
-  border: 1px solid #eeeeee;
+  border-collapse: separate; /* tránh border chồng nhau */
+  border-spacing: 0 10px;     /* khoảng cách giữa các hàng */
   margin-top: 1rem;
-  border-radius: 5px;
-  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.table th, .table td {
+  padding: 12px 15px;
+  text-align: left;
+  vertical-align: middle;
+  background-color: #fff;
+}
+
+.table thead th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+}
+
+.table tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+.table tbody tr:hover {
+  background-color: #f0f8ff;
 }
 
 .table td {
-  height: 3rem;
+  width: auto; /* để tự động theo nội dung */
+  max-width: 200px; /* giới hạn độ rộng tối đa */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
+
 .table td img {
-  width: 3rem;
-  height: 3rem;
+  width: 50px;
+  height: 50px;
   object-fit: cover;
-  border-radius: 100rem;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+
+.table td img:hover {
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 .table h3 {
   margin-top: 0.5rem;
   margin-left: 0.3rem;
   color: grey;
+  font-weight: normal;
 }
+
 .table a:hover {
   opacity: 0.9;
 }

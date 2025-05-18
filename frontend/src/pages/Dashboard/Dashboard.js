@@ -55,9 +55,18 @@ const allItems = [
   {
     title: 'Products',
     imageUrl: '/icons/technology-icon.svg',
-    url: '/admin/foods',
+    url: '/admin/products',
     forAdmin: true,
     bgColor: '#e040fb',
+    color: 'white',
+  },
+
+  {
+    title: 'Discount Codes',
+    imageUrl: '/icons/discount-circle-svgrepo-com.svg',
+    url: '/admin/vouchers',
+    forAdmin: true,
+    bgColor: '#508fff',
     color: 'white',
   },
 ];

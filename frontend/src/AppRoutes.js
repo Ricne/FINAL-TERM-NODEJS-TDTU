@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import CartPage from './pages/Cart/CartPage';
-import FoodPage from './pages/Food/FoodPage';
+import ProductPage from './pages/Product/ProductPage';
 import HomePage from './pages/Home/HomePage';
 import LoginPage from './pages/Login/LoginPage';
 import RegisterPage from './pages/Register/RegisterPage';
@@ -13,10 +13,12 @@ import ProfilePage from './pages/Profile/ProfilePage';
 import OrdersPage from './pages/Orders/OrdersPage';
 import Dashboard from './pages/Dashboard/Dashboard';
 import AdminRoute from './components/AdminRoute/AdminRoute';
-import FoodsAdminPage from './pages/FoodsAdmin/FoodsAdminPage';
-import FoodEditPage from './pages/FoodEdit/FoodEditPage';
+import ProductsAdminPage from './pages/ProductsAdmin/ProductsAdminPage';
+import ProductEditPage from './pages/ProductEdit/ProductEditPage';
 import UsersPage from './pages/UsersPage/UsersPage';
 import UserEditPage from './pages/UserEdit/UserEditPage';
+import EditVoucherPage from './pages/VoucherEdit/VoucherEditPage';
+import AdminVoucherPage from './pages/VouchersAdmin/VouchersAdminPage';
 
 export default function AppRoutes() {
   return (
@@ -24,7 +26,7 @@ export default function AppRoutes() {
       <Route path="/" element={<HomePage />} />
       <Route path="/search/:searchTerm" element={<HomePage />} />
       <Route path="/tag/:tag" element={<HomePage />} />
-      <Route path="/food/:id" element={<FoodPage />} />
+      <Route path="/product/:id" element={<ProductPage />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
@@ -77,27 +79,27 @@ export default function AppRoutes() {
         }
       />
       <Route
-        path="/admin/foods/:searchTerm?"
+        path="/admin/products/:searchTerm?"
         element={
           <AdminRoute>
-            <FoodsAdminPage />
+            <ProductsAdminPage />
           </AdminRoute>
         }
       />
 
       <Route
-        path="/admin/addFood"
+        path="/admin/addProduct"
         element={
           <AdminRoute>
-            <FoodEditPage />
+            <ProductEditPage />
           </AdminRoute>
         }
       />
       <Route
-        path="/admin/editFood/:foodId"
+        path="/admin/editProduct/:productId"
         element={
           <AdminRoute>
-            <FoodEditPage />
+            <ProductEditPage />
           </AdminRoute>
         }
       />
@@ -115,6 +117,31 @@ export default function AppRoutes() {
         element={
           <AdminRoute>
             <UserEditPage />
+          </AdminRoute>
+        }
+      />
+
+      <Route
+        path="/admin/vouchers"
+        element={
+          <AdminRoute>
+            <AdminVoucherPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/voucher/new"
+        element={
+          <AdminRoute>
+            <EditVoucherPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/voucher/:id"
+        element={
+          <AdminRoute>
+            <EditVoucherPage />
           </AdminRoute>
         }
       />

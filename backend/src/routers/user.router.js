@@ -7,7 +7,10 @@ import { UserModel } from '../models/user.model.js';
 import bcrypt from 'bcryptjs';
 import auth from '../middleware/auth.mid.js';
 import admin from '../middleware/admin.mid.js';
+import { OAuth2Client } from 'google-auth-library';
 const PASSWORD_HASH_SALT_ROUNDS = 10;
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID); 
+
 
 router.post(
   '/login',
@@ -151,6 +154,40 @@ router.put(
     });
 
     res.send();
+  })
+);
+
+router.post(
+  '/google-login',
+  handler(async (req, res) => {
+    const { credential } = req.body;
+    
+    try {
+      const ticket = await client.verifyIdToken({
+        idToken: credential,
+        audience: process.env.GOOGLE_CLIENT_ID,
+      });
+
+      const payload = ticket.getPayload();
+      const { email, name, picture } = payload;
+
+      // Check if user exists
+      let user = await UserModel.findOne({ email });
+
+      if (!user) {
+        // Create new user if doesn't exist
+        user = await UserModel.create({
+          name,
+          email,
+          password: Math.random().toString(36).slice(-8), // Random password
+          address: 'Please update your address', // Default address
+        });
+      }
+
+      res.send(generateTokenResponse(user));
+    } catch (error) {
+      res.status(BAD_REQUEST).send('Google login failed');
+    }
   })
 );
 

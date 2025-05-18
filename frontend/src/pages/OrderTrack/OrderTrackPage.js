@@ -55,11 +55,6 @@ export default function OrderTrackPage() {
           <OrderItemsList order={order} />
         </div>
 
-        <div>
-          <Title title="Your Location" fontSize="1.6rem" />
-          <Map location={order.addressLatLng} readonly={true} />
-        </div>
-
         {order.status === 'NEW' && (
           <div className={classes.payment}>
             <Link to="/payment">Go To Payment</Link>

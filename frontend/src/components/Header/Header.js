@@ -9,6 +9,7 @@ export default function Header() {
 
   const { cart } = useCart();
 
+  
   return (
     <header className={classes.header}>
       <div className={classes.container}>
