@@ -24,7 +24,7 @@ app.use(cors({
   credentials: true,
   origin: [
     'http://localhost:3000',
-    'https://6829b015212e6d9b8cbcdfcf--bucolic-tiramisu-96b6cd.netlify.app/'
+    'https://bucolic-tiramisu-96b6cd.netlify.app',
   ]
 }));
 
